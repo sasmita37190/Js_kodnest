@@ -44,6 +44,7 @@ console.log(typeof myFunction);
 
 
 
+//Important Note:
 
 // Type of val	                                            Result
 // ------------                                             --------------
