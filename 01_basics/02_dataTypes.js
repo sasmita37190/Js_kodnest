@@ -3,6 +3,10 @@
 // alert(2+3); // we r using node js, not browser, so alert is not working here. It is used in browser to show pop up message.
 
 // console.log(2+3); console.log("Sasmita"); MDN, TC39
+
+
+
+
 // Data types in JS
 
 // 1. Primitive data types: 
@@ -49,8 +53,10 @@ let person = {
 };
 
 console.log("Person is: " ,person);
+
 console.log(typeof "SASMITA");
 console.log(typeof 25);
-console.log(typeof true);
+console.log(typeof false);
 console.log(typeof null); //object
 console.log(typeof undefined); // undefined is a type itself, it is not a value of any other type.
+
