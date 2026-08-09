@@ -1,17 +1,17 @@
-//No i/p, but with o/p
+//function without i/p and o/p.
 
-// function add()
-// {
-//     let a = 10;
-//     let b = 20;
-//     console.log (a+b);
-// }
+function add()
+{
+    let a = 10;
+    let b = 20;
+    console.log (a+b);
+}
 
-// add()
+add()
 
 
 
-//No parameters but return type.
+//function with no parameters but return type.
 
 
 function add()
@@ -21,6 +21,28 @@ function add()
     return (a+b);
 }
 
-let resadd = add();
+console.log((add())); //
 
-console.log(resadd); //
+
+//function With parameters and no return type.
+function add(a,b)
+{
+    console.log(a+b);
+}
+
+add(10,20);
+
+
+//Note: when u call the function and gving the value is called as arguments but when u declared the function and giving the value is called as parameters.
+
+//function with parameters and return type
+
+function add(a,b)
+{
+    return (a+b);
+}
+
+let res = add(10,20);
+console.log(res);
+
+

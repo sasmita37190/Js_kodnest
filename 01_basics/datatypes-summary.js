@@ -3,28 +3,36 @@
 
 // 7 types: String, Number, Boolean, Null, Undefined,Symbol,BigInt
 
-
 const score = 100;
 const scoreValue = 100.5;
+console.log(typeof score);
+console.log(typeof scoreValue);
+
+
 
 const isLoggedIn = false
 const outssidetemp = null
+console.log(typeof isLoggedIn);  // boolean
+console.log(typeof outssidetemp);  //object
+
 let userEmail;
 
 const id = Symbol("123")
 const anotherId = Symbol("123")
+console.log(id);
+console.log(anotherId);
 
 console.log(id === anotherId); // false
 
 const bigNumber = 123445678n;
 console.log(bigNumber)
+console.log(typeof bigNumber) //bigint
 
 
 //Reference (Non Primiitve) : Object,Array,Function
 
 //Array
 const heros = ["shaktiman", "doga", "batman"]
-
 console.log(heros);
 
 //Object
@@ -90,3 +98,25 @@ console.log(userTwo.email)
 //  When you assign a primitive value to a variable, it is stored directly in the variable. 
 // On the other hand, non-primitive values (objects) are mutable and are stored as references in the variable. When you assign an object to a variable,
 //  it stores a reference to the location of the object in memory. Therefore, when you modify the object through one variable, it affects all variables that reference the same object.
+
+
+// Interview Cheat Sheet
+
+// ✅ Primitive Types → Stack → Copy
+
+// let a = 10;
+// let b = a;
+
+// Changing b does not change a.
+
+// ✅ Reference Types → Heap → Reference
+
+// let obj1 = { name: "Sasmita" };
+// let obj2 = obj1;
+
+// Changing obj2.name also changes obj1.name.
+
+
+// ⭐ One-Line Memory Trick
+// Stack = Primitive = Copy = Separate values
+// Heap = Object/Array/Function = Reference = Shared object
