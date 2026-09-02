@@ -5,7 +5,1526 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chai aur code</title>
 </head>
-<body>
+<body style="background-color: aqua; color:darkmagenta">
     
 </body>
+<script>
+    const div = document.createElement('div')
+    console.log(div)
+    div.className = "main"
+    div.id = Math.round(Math.random() * 10 + 1)
+    div.setAttribute("title", "generated title")
+    div.style.backgroundColor = "green"
+    div.style.padding = "12px"
+ //   div.innerText = "Chai aur Code"
+    const addText =document.createTextNode("Chai aur code")
+    div.appendChild(addText)
+
+    document.body.appendChild(div)
+</script>
 </html>
+
+
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+</head> 
+<body style="background-color: cyan; color:deeppink"> 
+    <ul class="language"> 
+        <li>JavaScript</li> 
+    </ul> 
+</body> 
+<script> 
+    function addLanguage(langName) { 
+       const li =  document.createElement('li'); 
+       li.innerHTML = ${langName} 
+       document.querySelector('.language'). 
+       appendChild(li) 
+    } 
+ 
+    addLanguage("python") 
+    addLanguage("typeScript") 
+ 
+    function addOptiLanguage(langName) { 
+        const li = document.createElement('li'); 
+        li.appendChild(document.createTextNode(langName)) 
+        document.querySelector('.language').appendChild(li) 
+     
+    } 
+    addOptiLanguage('golang') 
+ 
+ 
+    //Edit 
+ 
+    const secondLang =     document.querySelector("li:nth-child(2)") 
+    //secondLang.innerHTML = "Mojo" 
+ 
+    const newli = document.createElement('li') 
+    newli.textContent = "Mojo" 
+    secondLang.replaceWith(newli) 
+ 
+//edit 
+ 
+const firstdLang = document.querySelector("li:first-child") 
+firstdLang.outerHTML = '<li>TypeScript<li>' 
+ 
+    //remove 
+ 
+    const lastLang = document.querySelector('li:last-child') 
+    lastLang.remove() 
+ 
+</script> 
+</html> explain all the things with exam[leand notes
+
+Absolutely. This code is a DOM manipulation example. It covers the most important operations you should know for interviews/exams:
+
+Creating elements
+Adding text
+appendChild()
+querySelector()
+innerHTML
+textContent
+createTextNode()
+Editing/replacing elements
+replaceWith()
+outerHTML
+Removing elements with remove()
+nth-child(), first-child, last-child
+1. Understand the HTML first
+
+Your initial HTML is:
+
+<ul class="language">
+    <li>JavaScript</li>
+</ul>
+
+Think of it like this:
+
+ul.language
+   |
+   └── li
+       |
+       └── JavaScript
+
+Initially, there is only one <li>.
+
+2. document.createElement()
+
+You wrote:
+
+const li = document.createElement('li');
+Meaning
+
+It creates a new HTML element in memory.
+
+document.createElement('li')
+
+means:
+
+"Create a new <li> element."
+
+But it is not yet added to the webpage.
+
+Example:
+
+const div = document.createElement('div');
+
+Creates:
+
+<div></div>
+
+But it won't appear until you add it to the DOM.
+
+Important exam point
+
+createElement() → creates an element
+
+3. innerHTML
+
+You wrote:
+
+li.innerHTML = `${langName}`;
+
+Suppose:
+
+addLanguage("Python");
+
+Then:
+
+langName = "Python"
+
+So:
+
+li.innerHTML = "Python";
+
+The result becomes:
+
+<li>Python</li>
+What is innerHTML?
+
+It gets or changes the HTML content inside an element.
+
+Example:
+
+const div = document.createElement("div");
+
+div.innerHTML = "<b>Hello</b>";
+
+Result:
+
+<div>
+    <b>Hello</b>
+</div>
+
+Because innerHTML understands HTML tags.
+
+4. Template literals ${}
+
+You have:
+
+li.innerHTML = `${langName}`;
+
+The backticks:
+
+``
+
+are called template literals.
+
+${langName} inserts the value of the variable.
+
+Example:
+
+const name = "Sasmita";
+
+console.log(`Hello ${name}`);
+
+Output:
+
+Hello Sasmita
+
+You could also simply write:
+
+li.innerHTML = langName;
+
+for this particular case.
+
+5. querySelector()
+
+You wrote:
+
+document.querySelector('.language')
+
+This selects the first element matching the CSS selector.
+
+Because your HTML has:
+
+<ul class="language">
+
+you use:
+
+document.querySelector('.language')
+
+. means class.
+
+Examples
+document.querySelector("#title")
+
+Selects:
+
+<h1 id="title">
+document.querySelector(".language")
+
+Selects:
+
+<ul class="language">
+document.querySelector("li")
+
+Selects the first <li>.
+
+Exam point
+
+querySelector() → returns the first matching element.
+
+6. appendChild()
+
+You have:
+
+document.querySelector('.language').appendChild(li);
+
+This means:
+
+Find .language and add li as its last child.
+
+Initially:
+
+<ul class="language">
+    <li>JavaScript</li>
+</ul>
+
+After:
+
+addLanguage("Python");
+
+it becomes:
+
+<ul class="language">
+    <li>JavaScript</li>
+    <li>Python</li>
+</ul>
+
+After:
+
+addLanguage("TypeScript");
+
+it becomes:
+
+<ul class="language">
+    <li>JavaScript</li>
+    <li>Python</li>
+    <li>TypeScript</li>
+</ul>
+Exam point
+
+appendChild() → adds a node as the last child.
+
+7. Your first function
+function addLanguage(langName) {
+    const li = document.createElement('li');
+    li.innerHTML = `${langName}`;
+    document.querySelector('.language').appendChild(li);
+}
+
+Let's understand it step-by-step.
+
+Step 1
+addLanguage("Python");
+
+langName becomes:
+
+Python
+Step 2
+const li = document.createElement('li');
+
+Creates:
+
+<li></li>
+Step 3
+li.innerHTML = `${langName}`;
+
+Becomes:
+
+<li>Python</li>
+Step 4
+document.querySelector('.language')
+
+finds:
+
+<ul class="language">
+Step 5
+.appendChild(li)
+
+adds:
+
+<li>Python</li>
+
+Final:
+
+<ul class="language">
+    <li>JavaScript</li>
+    <li>Python</li>
+</ul>
+8. createTextNode()
+
+Your second function:
+
+function addOptiLanguage(langName) {
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(langName));
+    document.querySelector('.language').appendChild(li);
+}
+
+Here:
+
+document.createTextNode(langName)
+
+creates a text node.
+
+Example:
+
+document.createTextNode("Golang")
+
+creates text:
+
+Golang
+
+Then:
+
+li.appendChild(...)
+
+puts that text inside <li>.
+
+Result:
+
+<li>Golang</li>
+9. innerHTML vs createTextNode()
+
+This is an important interview question.
+
+Using innerHTML
+li.innerHTML = "<b>Hello</b>";
+
+Result:
+
+<li><b>Hello</b></li>
+
+The <b> tag is interpreted as HTML.
+
+Using createTextNode()
+li.appendChild(
+    document.createTextNode("<b>Hello</b>")
+);
+
+Result:
+
+<li>&lt;b&gt;Hello&lt;/b&gt;</li>
+
+It treats it as plain text, not HTML.
+
+Easy way to remember
+innerHTML      → HTML
+textContent    → Text
+createTextNode → Text node
+10. Selecting the second <li>
+
+You wrote:
+
+const secondLang = document.querySelector("li:nth-child(2)");
+
+nth-child(2) means:
+
+Select the second child.
+
+At this point your list is:
+
+<ul class="language">
+    <li>JavaScript</li>   <!-- 1 -->
+    <li>Python</li>       <!-- 2 -->
+    <li>TypeScript</li>   <!-- 3 -->
+    <li>Golang</li>       <!-- 4 -->
+</ul>
+
+So:
+
+document.querySelector("li:nth-child(2)")
+
+selects:
+
+<li>Python</li>
+11. replaceWith()
+
+You create a new <li>:
+
+const newli = document.createElement('li');
+
+Then:
+
+newli.textContent = "Mojo";
+
+Now:
+
+<li>Mojo</li>
+
+Then:
+
+secondLang.replaceWith(newli);
+
+This replaces the old element.
+
+Before:
+
+<li>Python</li>
+
+After:
+
+<li>Mojo</li>
+
+So:
+
+Python
+  ↓
+Mojo
+Exam point
+
+replaceWith() → replaces an existing element/node with another node.
+
+12. textContent
+
+You wrote:
+
+newli.textContent = "Mojo";
+
+textContent changes the text inside an element.
+
+Example:
+
+element.textContent = "Hello";
+
+Result:
+
+<div>Hello</div>
+
+Unlike innerHTML, it doesn't interpret the content as HTML.
+
+Example:
+
+element.textContent = "<b>Hello</b>";
+
+The browser displays:
+
+<b>Hello</b>
+
+rather than making it bold.
+
+13. innerHTML vs textContent
+
+Very important interview question.
+
+Property	Purpose
+innerHTML	Reads/writes HTML
+textContent	Reads/writes text
+innerText	Gets/sets visible text
+
+Example:
+
+element.innerHTML = "<b>Hello</b>";
+
+→ Hello becomes bold
+
+But:
+
+element.textContent = "<b>Hello</b>";
+
+→ displays literally:
+
+<b>Hello</b>
+Interview answer
+
+innerHTML parses HTML, while textContent treats the value as plain text.
+
+14. first-child
+
+You wrote:
+
+const firstdLang = document.querySelector("li:first-child");
+
+This selects the first child.
+
+Current list:
+
+<ul class="language">
+    <li>JavaScript</li>
+    <li>Mojo</li>
+    <li>TypeScript</li>
+    <li>Golang</li>
+</ul>
+
+So:
+
+li:first-child
+
+selects:
+
+<li>JavaScript</li>
+15. outerHTML
+
+You wrote:
+
+firstdLang.outerHTML = '<li>TypeScript<li>';
+
+outerHTML means:
+
+Replace the entire element, including the element itself.
+
+For example:
+
+element.outerHTML = "<p>Hello</p>";
+
+If originally:
+
+<div>Hello</div>
+
+it becomes:
+
+<p>Hello</p>
+Difference
+
+innerHTML changes what's inside.
+
+<div>
+    <!-- innerHTML changes this part -->
+</div>
+
+outerHTML changes the whole element.
+
+<!-- outerHTML can replace the entire div -->
+<div>...</div>
+⚠️ Small correction in your code
+
+You wrote:
+
+firstdLang.outerHTML = '<li>TypeScript<li>';
+
+Better write:
+
+firstdLang.outerHTML = '<li>TypeScript</li>';
+
+Always close the <li> properly.
+
+16. last-child
+
+Finally:
+
+const lastLang = document.querySelector('li:last-child');
+
+This selects the last <li>.
+
+Suppose:
+
+<ul class="language">
+    <li>TypeScript</li>
+    <li>Mojo</li>
+    <li>TypeScript</li>
+    <li>Golang</li>
+</ul>
+
+Then:
+
+li:last-child
+
+selects:
+
+<li>Golang</li>
+17. remove()
+
+You wrote:
+
+lastLang.remove();
+
+This removes the selected element from the DOM.
+
+Before:
+
+<li>Golang</li>
+
+After:
+
+Golang is removed
+
+Final list:
+
+<ul class="language">
+    <li>TypeScript</li>
+    <li>Mojo</li>
+    <li>TypeScript</li>
+</ul>
+Exam point
+element.remove();
+
+→ removes that element from the DOM.
+
+Complete flow of YOUR program
+
+Your program basically does this:
+
+Initial
+   ↓
+JavaScript
+   ↓
+Add Python
+   ↓
+Add TypeScript
+   ↓
+Add Golang
+   ↓
+Replace Python → Mojo
+   ↓
+Replace first JavaScript → TypeScript
+   ↓
+Remove last language → Golang
+
+Final result:
+
+TypeScript
+Mojo
+TypeScript
+⭐ Most Important DOM Methods for Interview
+
+Memorize these:
+
+Creating
+document.createElement("li");
+
+Creates an element.
+
+Selecting
+document.querySelector(".language");
+
+Selects first matching element.
+
+Adding
+parent.appendChild(child);
+
+Adds child at the end.
+
+Text
+element.textContent = "Hello";
+
+Sets text.
+
+HTML
+element.innerHTML = "<b>Hello</b>";
+
+Sets HTML.
+
+Text node
+document.createTextNode("Hello");
+
+Creates a text node.
+
+Replace
+oldElement.replaceWith(newElement);
+
+Replaces an element.
+
+Remove
+element.remove();
+
+Removes an element.
+
+First child
+li:first-child
+Last child
+li:last-child
+Specific child
+li:nth-child(2)
+🔥 Interview Questions From This Code
+Q1. What does createElement() do?
+
+Answer:
+
+createElement() creates a new HTML element in memory. It needs to be appended to the DOM to display it on the webpage.
+
+Q2. What does appendChild() do?
+
+Answer:
+
+appendChild() adds a node as the last child of a parent element.
+
+Q3. Difference between innerHTML and textContent?
+
+Answer:
+
+innerHTML works with HTML and parses HTML tags, while textContent treats the content as plain text.
+
+Q4. What does querySelector() return?
+
+Answer:
+
+querySelector() returns the first element that matches the specified CSS selector. If no element matches, it returns null.
+
+Q5. What does nth-child(2) mean?
+
+Answer:
+
+It selects the element that is the second child of its parent.
+
+Q6. What is replaceWith()?
+
+Answer:
+
+replaceWith() replaces an existing DOM element with another element or node.
+
+Q7. What does remove() do?
+
+Answer:
+
+remove() removes an element from the DOM.
+
+Q8. What is createTextNode()?
+
+Answer:
+
+createTextNode() creates a text node containing the specified text.
+
+Q9. Difference between innerHTML and outerHTML?
+
+Answer:
+
+innerHTML changes the content inside an element, while outerHTML includes the element itself and can replace the entire element.
+
+Example:
+
+div.innerHTML = "<p>Hello</p>";
+
+changes what's inside div.
+
+div.outerHTML = "<p>Hello</p>";
+
+replaces the entire div with a <p>.
+
+🧠 One-line revision notes
+createElement()   → Create element
+createTextNode()  → Create text
+querySelector()   → Select first matching element
+appendChild()     → Add at the end
+innerHTML         → HTML content
+textContent       → Plain text
+outerHTML         → Entire element + content
+replaceWith()     → Replace element
+remove()          → Delete element
+
+:first-child      → First child
+:last-child       → Last child
+:nth-child(2)     → Second child
+
+For a JavaScript/React interview, these DOM concepts are important because they also help you understand how React manages the UI and why React uses a virtual DOM rather than manually doing DOM manipulation like this.
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Chai aur code</title> 
+</head> 
+<body style="background-color: aqua; color:darkmagenta"> 
+     
+</body> 
+<script> 
+    const div = document.createElement('div') 
+    console.log(div) 
+    div.className = "main" 
+    div.id = Math.round(Math.random() * 10 + 1) 
+    div.setAttribute("title", "generated title") 
+    div.style.backgroundColor = "green" 
+    div.style.padding = "12px" 
+ //   div.innerText = "Chai aur Code" 
+    const addText =document.createTextNode("Chai aur code") 
+    div.appendChild(addText) 
+ 
+    document.body.appendChild(div) 
+</script> 
+</html> explain all these thngs with notes and imp
+
+This is a very important DOM element creation example. It teaches you how to create an HTML element completely using JavaScript and then add it to the webpage.
+
+I'll explain it line by line, then give you exam/interview notes.
+
+1. What is this code doing?
+
+Your JavaScript creates this HTML:
+
+<div class="main" id="some-number" title="generated title"
+     style="background-color: green; padding: 12px;">
+    Chai aur code
+</div>
+
+But you don't write that <div> directly in HTML.
+
+Instead, JavaScript creates it dynamically.
+
+Basic flow
+Create element
+      ↓
+Add class
+      ↓
+Add id
+      ↓
+Add attribute
+      ↓
+Add CSS
+      ↓
+Add text
+      ↓
+Add element to body
+2. document.createElement()
+
+You wrote:
+
+const div = document.createElement('div')
+
+This creates a new <div> element.
+
+Think of it as:
+
+<div></div>
+
+But at this point, it exists only in JavaScript memory.
+
+It is not yet visible on the webpage.
+
+Important
+document.createElement("div")
+
+means:
+
+Create a new DOM element of type <div>.
+
+You can create different elements:
+
+document.createElement("p")
+document.createElement("h1")
+document.createElement("button")
+document.createElement("li")
+document.createElement("img")
+
+Example:
+
+const h1 = document.createElement("h1")
+
+creates:
+
+<h1></h1>
+3. console.log(div)
+
+You wrote:
+
+console.log(div)
+
+This prints the newly created <div> in the browser console.
+
+You may see something like:
+
+<div></div>
+Important
+
+console.log() is used to check/debug values in the console.
+
+It does not display the element on the webpage.
+
+4. className
+
+You wrote:
+
+div.className = "main"
+
+This gives the div a class:
+
+<div class="main"></div>
+Why use className?
+
+Because the class attribute in HTML is represented by className in JavaScript.
+
+HTML:
+
+<div class="main"></div>
+
+JavaScript:
+
+div.className = "main"
+Important
+
+If you already have:
+
+div.className = "main"
+
+and then:
+
+div.className = "box"
+
+the class becomes:
+
+<div class="box">
+
+The previous "main" is replaced.
+
+If you want to work with individual classes, you can use:
+
+div.classList.add("main")
+5. id
+
+You wrote:
+
+div.id = Math.round(Math.random() * 10 + 1)
+
+This gives the div a random ID.
+
+For example, it might produce:
+
+<div id="7">
+
+or:
+
+<div id="10">
+6. Understanding Math.random()
+
+This is important JavaScript.
+
+Math.random()
+
+generates a random decimal number between:
+
+0 inclusive
+1 exclusive
+
+Examples:
+
+0.25
+0.73
+0.91
+0.04
+
+It can be:
+
+0 ≤ number < 1
+7. Understanding Math.random() * 10
+
+Suppose:
+
+Math.random()
+
+returns:
+
+0.5
+
+Then:
+
+0.5 * 10
+
+gives:
+
+5
+
+So:
+
+Math.random() * 10
+
+gives approximately:
+
+0 to 9.999...
+8. + 1
+
+You have:
+
+Math.random() * 10 + 1
+
+Now the range becomes approximately:
+
+1 to 10.999...
+9. Math.round()
+
+You then use:
+
+Math.round(...)
+
+Math.round() rounds a number to the nearest integer.
+
+Examples:
+
+Math.round(4.2) // 4
+Math.round(4.7) // 5
+Math.round(8.5) // 9
+
+Therefore:
+
+Math.round(Math.random() * 10 + 1)
+
+generates a random integer, though the distribution is not uniform and the possible result can include 11.
+
+Better way for a random integer from 1–10
+Math.floor(Math.random() * 10) + 1
+
+This gives:
+
+1, 2, 3, ... 10
+Remember
+Math.random()
+
+→ random decimal
+
+Math.floor()
+
+→ rounds down
+
+Math.round()
+
+→ rounds to nearest integer
+
+Math.ceil()
+
+→ rounds up
+
+10. setAttribute()
+
+You wrote:
+
+div.setAttribute("title", "generated title")
+
+This adds an HTML attribute.
+
+The result is:
+
+<div title="generated title">
+
+So the general syntax is:
+
+element.setAttribute(attributeName, value)
+
+Example:
+
+div.setAttribute("title", "Hello")
+
+Result:
+
+<div title="Hello">
+11. Why use setAttribute()?
+
+You can add many different attributes.
+
+For example:
+
+const img = document.createElement("img")
+
+img.setAttribute("src", "photo.jpg")
+img.setAttribute("alt", "My photo")
+
+Result:
+
+<img src="photo.jpg" alt="My photo">
+
+For a link:
+
+const a = document.createElement("a")
+
+a.setAttribute("href", "https://example.com")
+a.setAttribute("target", "_blank")
+12. title attribute
+
+You wrote:
+
+div.setAttribute("title", "generated title")
+
+title is an HTML attribute.
+
+When the user hovers over the element, the browser can show the title as a tooltip.
+
+Example:
+
+<div title="This is my div">
+    Chai aur code
+</div>
+13. Changing CSS using JavaScript
+
+You wrote:
+
+div.style.backgroundColor = "green"
+
+This changes the background color.
+
+Equivalent CSS:
+
+background-color: green;
+
+JavaScript uses:
+
+div.style.backgroundColor = "green"
+Why backgroundColor instead of background-color?
+
+JavaScript uses camelCase for CSS properties.
+
+CSS:
+
+background-color
+
+JavaScript:
+
+element.style.backgroundColor
+
+More examples:
+
+div.style.color = "white"
+div.style.fontSize = "20px"
+div.style.marginTop = "10px"
+div.style.borderRadius = "10px"
+14. padding
+
+You wrote:
+
+div.style.padding = "12px"
+
+Equivalent CSS:
+
+padding: 12px;
+
+So the div gets 12px padding on all four sides.
+
+      12px
+   ┌───────────┐
+12px│   Text   │12px
+   └───────────┘
+      12px
+15. Commented innerText
+
+You have:
+
+// div.innerText = "Chai aur Code"
+
+Because of //, this line is a comment and JavaScript doesn't execute it.
+
+If you remove //:
+
+div.innerText = "Chai aur Code"
+
+the div will contain that text.
+
+Result:
+
+<div>
+    Chai aur Code
+</div>
+16. createTextNode()
+
+Instead, your code uses:
+
+const addText = document.createTextNode("Chai aur code")
+
+This creates a text node.
+
+Think:
+
+Text Node
+    ↓
+"Chai aur code"
+
+It is not an HTML element.
+
+Then you add it inside the div:
+
+div.appendChild(addText)
+
+Result:
+
+<div>
+    Chai aur code
+</div>
+17. Why appendChild()?
+
+This is extremely important.
+
+div.appendChild(addText)
+
+means:
+
+Add addText as a child inside div.
+
+Before:
+
+<div></div>
+
+After:
+
+<div>Chai aur code</div>
+18. Finally: document.body.appendChild(div)
+
+This is the most important step.
+
+You created the div, but it wasn't attached to the webpage yet.
+
+So you write:
+
+document.body.appendChild(div)
+
+Meaning:
+
+Find the <body> and add the newly created <div> inside it.
+
+Before:
+
+<body>
+</body>
+
+After:
+
+<body>
+    <div class="main">
+        Chai aur code
+    </div>
+</body>
+
+Now the element appears on the webpage.
+
+19. Complete execution step-by-step
+
+Your code effectively does:
+
+Step 1
+const div = document.createElement('div')
+
+Creates:
+
+<div></div>
+Step 2
+div.className = "main"
+
+Now:
+
+<div class="main"></div>
+Step 3
+div.id = ...
+
+Now:
+
+<div class="main" id="7"></div>
+
+Example only—the number is random.
+
+Step 4
+div.setAttribute("title", "generated title")
+
+Now:
+
+<div class="main" id="7" title="generated title"></div>
+Step 5
+div.style.backgroundColor = "green"
+
+Background becomes green.
+
+Step 6
+div.style.padding = "12px"
+
+Adds padding.
+
+Step 7
+const addText = document.createTextNode("Chai aur code")
+
+Creates text.
+
+Step 8
+div.appendChild(addText)
+
+Puts text inside div.
+
+Step 9
+document.body.appendChild(div)
+
+Puts the div inside <body>.
+
+⭐ Final DOM
+
+Your browser will effectively have:
+
+<body style="background-color: aqua; color: darkmagenta">
+
+    <div
+        class="main"
+        id="7"
+        title="generated title"
+        style="background-color: green; padding: 12px;"
+    >
+        Chai aur code
+    </div>
+
+</body>
+
+The exact ID can be different because it is random.
+
+🔥 Important DOM Notes
+1. Creating elements
+document.createElement("div")
+
+Creates an element.
+
+2. Creating text
+document.createTextNode("Hello")
+
+Creates a text node.
+
+3. Adding child
+parent.appendChild(child)
+
+Adds a child to the parent.
+
+4. Class
+element.className = "main"
+
+Sets the class.
+
+5. ID
+element.id = "box"
+
+Sets the ID.
+
+6. Attribute
+element.setAttribute("title", "Hello")
+
+Adds/changes an attribute.
+
+7. CSS
+element.style.color = "red"
+element.style.backgroundColor = "black"
+
+Changes inline CSS.
+
+8. Text
+element.textContent = "Hello"
+
+Adds/replaces text.
+
+9. HTML
+element.innerHTML = "<b>Hello</b>"
+
+Adds/parses HTML.
+
+textContent vs innerText vs innerHTML
+
+This is very important for interviews.
+
+Property	Meaning
+textContent	Gets/sets text content
+innerText	Gets/sets rendered/visible text
+innerHTML	Gets/sets HTML markup
+
+Example:
+
+div.innerHTML = "<b>Hello</b>"
+
+The browser creates a <b> element.
+
+But:
+
+div.textContent = "<b>Hello</b>"
+
+The browser treats it as text.
+
+className vs classList
+
+Another important interview question.
+
+className
+div.className = "main box"
+
+Sets the entire class attribute.
+
+classList
+div.classList.add("main")
+div.classList.add("box")
+
+Adds classes individually.
+
+Other methods:
+
+div.classList.remove("box")
+div.classList.toggle("active")
+div.classList.contains("main")
+Remember
+className → work with complete class attribute
+
+classList → add/remove/toggle/check classes
+setAttribute() vs property
+
+Both can set attributes.
+
+Property
+div.id = "box"
+setAttribute()
+div.setAttribute("id", "box")
+
+Both can produce:
+
+<div id="box">
+
+<!-- For normal properties like id and className, direct property access is common.
+
+For arbitrary HTML attributes, setAttribute() is useful.
+
+⭐ Interview Questions From This Code
+Q1. What does document.createElement() do?
+
+It creates a new DOM element in memory.
+
+Q2. Is a newly created element automatically visible?
+
+No. It must be attached to the DOM, usually using methods such as appendChild().
+
+Q3. What does appendChild() do?
+
+It adds a node as the last child of a parent element.
+
+Q4. What does setAttribute() do?
+
+It creates or updates an attribute on an element.
+
+Q5. Why is backgroundColor used instead of background-color?
+
+JavaScript style properties use camelCase, while CSS uses kebab-case.
+
+Q6. What does createTextNode() do?
+
+It creates a text node containing the specified text.
+
+Q7. What does Math.random() return?
+
+A pseudo-random number greater than or equal to 0 and less than 1.
+
+Q8. What does Math.round() do?
+
+It rounds a number to the nearest integer.
+
+Q9. Why do we use document.body.appendChild(div)?
+
+To attach the dynamically created div to the document body so that it becomes part of the DOM and can appear on the page.
+
+🧠 Quick Revision Sheet
+
+Memorize this flow:
+
+CREATE
+document.createElement()
+
+↓
+SET CLASS
+element.className
+
+↓
+SET ID
+element.id
+
+↓
+SET ATTRIBUTE
+element.setAttribute()
+
+↓
+SET CSS
+element.style.property
+
+↓
+CREATE TEXT
+document.createTextNode()
+
+↓
+ADD TEXT
+element.appendChild()
+
+↓
+ADD TO PAGE
+document.body.appendChild()
+One-line memory trick:
+
+Create → Configure → Add Content → Attach to DOM
+
+const div = document.createElement("div");  // Create
+
+div.className = "main";                     // Configure
+div.id = "box";
+div.setAttribute("title", "Hello");
+div.style.backgroundColor = "green";
+
+const text = document.createTextNode("Hello"); // Content
+div.appendChild(text);
+
+document.body.appendChild(div);             // Attach
+
+This pattern is one of the core DOM patterns you should be comfortable with before moving further into JavaScript and React. -->

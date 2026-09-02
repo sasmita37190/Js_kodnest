@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur Code</title>
+</head>
+<body style="background-color: rgb(178, 178, 239); color:brown">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+        <div class="day">Friday</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector(' .parent')
+    console.log(parent);
+    console.log(parent.children);
+    console.log(parent.children[1].innerHTML)
+
+    for (let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].innerHTML);
+    }
+
+    parent.children[1].style.color = "orange"
+    //console.log(parent.firstElementChild);
+    //console.log(parent.lastElementChild); 
+
+    const dayOne = document.querySelector('.day');
+
+    // console.log(dayOne)
+    // console.log(dayOne.parentElement);
+    // console.log(dayOne.nextElementSibling);
+
+    console.log("NODES: ", parent.childNodes);
+
+
+</script>
+</html>
+
+
+<!-- . What does "parent" mean in DOM?
+
+A parent is simply an HTML element that contains another HTML element.
+
+Example:
+
+<div class="parent">
+    <div class="day">Monday</div>
+</div>
+The first <div> contains the second <div>.
+
+Therefore:
+
+.parent → parent
+.day → child
+
+---------------------------------
+3. What does querySelector() do?
+---------------------------------
+
+
+Your code:
+
+const parent = document.querySelector('.parent');
+
+Let's break it:
+
+document
+
+Means your entire HTML document/page.
+
+.querySelector()
+
+Finds the first element that matches the selector.
+
+'.parent'
+
+Means:
+
+Find the element having class parent.
+
+So:
+
+const parent = document.querySelector('.parent');
+
+means:
+
+Find <div class="parent"> and store it inside the variable parent.
+
+Now:
+
+console.log(parent);
+
+will show something like:
+
+<div class="parent">
+    <div class="day">Monday</div>
+    ...
+</div>
+
+-------------------------
+4. parent.children
+---------------------------
+
+
+This is one of the most important parts.
+
+You wrote:
+
+console.log(parent.children);
+
+children means:
+
+Give me the HTML elements directly inside this parent.
+
+Your parent contains:
+
+<div class="day">Monday</div>
+<div class="day">Tuesday</div>
+<div class="day">Wednesday</div>
+<div class="day">Thursday</div>
+<div class="day">Friday</div>
+
+Therefore:
+
+parent.children
+
+gives you an HTMLCollection containing those 5 elements.
+
+Think:
+
+parent.children
+
+[0] Monday
+[1] Tuesday
+[2] Wednesday
+[3] Thursday
+[4] Friday
+
+--------------------------
+
+5. Why [0], [1], [2]?
+
+------------------------------
+
+Because JavaScript starts counting from 0.
+
+So:
+
+Index       Element
+
+  0         Monday
+  1         Tuesday
+  2         Wednesday
+  3         Thursday
+  4         Friday
+
+Therefore:
+
+parent.children[0]
+
+means:
+
+Give me the first child.
+
+Result:
+
+<div class="day">Monday</div>
+
+And:
+
+parent.children[1]
+
+means:
+
+Give me the second child.
+
+Result:
+
+<div class="day">Tuesday</div>
+
+---------------------------------------
+6.Now let's understand it.
+----------------------------------------
+parent.children[1]
+
+gives:
+
+<div class="day">Tuesday</div>
+
+Then:
+
+.innerHTML
+
+gets the HTML/content inside that element.
+
+So:
+
+parent.children[1].innerHTML
+
+gives:
+
+Tuesday
+
+Therefore:
+
+console.log(parent.children[1].innerHTML);
+
+Output:
+
+Tuesday
+
+
+
+
+
+------------------------------
+7. Now understand your for loop
+-------------------------------
+
+
+
+for (let i = 0; i < parent.children.length; i++) {
+    console.log(parent.children[i].innerHTML);
+}
+
+This is simply going through every child one by one.
+
+First:
+
+i = 0
+
+So:
+
+parent.children[0].innerHTML
+
+→ Monday
+
+Then:
+
+i = 1
+
+→ Tuesday
+
+Then:
+
+i = 2
+
+→ Wednesday
+
+Then:
+
+i = 3
+
+→ Thursday
+
+Then:
+
+i = 4
+
+→ Friday
+
+Finally:
+
+i = 5
+
+But there are only 5 children, so the loop stops.
+
+Why parent.children.length?
+
+There are 5 children.
+
+So:
+
+parent.children.length
+
+is:
+
+5
+
+The condition is:
+
+i < 5
+
+Therefore:
+
+i = 0 ✅
+i = 1 ✅
+i = 2 ✅
+i = 3 ✅
+i = 4 ✅
+i = 5 ❌ stop
+
+
+--------------------------------------------
+8. This line changes Tuesday's color
+---------------------------------------------
+
+You wrote:
+
+parent.children[1].style.color = "orange";
+
+Remember:
+
+[0] Monday
+[1] Tuesday
+[2] Wednesday
+[3] Thursday
+[4] Friday
+
+So:
+
+parent.children[1]
+
+means Tuesday.
+
+Then:
+
+.style.color = "orange"
+
+changes its text color.
+
+So:
+
+parent.children[1].style.color = "orange";
+
+means:
+
+Find the second child of .parent and make its text orange.
+
+
+-----------------------------
+9. firstElementChild
+-------------------------------
+
+
+
+You commented:
+
+//console.log(parent.firstElementChild);
+
+Remove //:
+
+console.log(parent.firstElementChild);
+
+It gives you the first HTML element child.
+
+Your first child is:
+
+<div class="day">Monday</div>
+
+Therefore:
+
+parent.firstElementChild
+
+→ Monday
+
+Think:
+
+parent
+   |
+   ├── FIRST → Monday
+   ├── Tuesday
+   ├── Wednesday
+   ├── Thursday
+   └── LAST → Friday
+
+
+   ---------------------
+10. lastElementChild
+--------------------------------
+You also have:
+
+//console.log(parent.lastElementChild);
+
+Remove //:
+
+console.log(parent.lastElementChild);
+
+It gives the last HTML element child.
+
+Therefore:
+
+parent.lastElementChild
+
+→ Friday.
+
+
+----------------------------
+11. Now dayOne
+-------------------------
+
+You wrote:
+
+const dayOne = document.querySelector('.day');
+
+Remember:
+
+querySelector()
+
+selects the first matching element.
+
+You have five .day elements:
+
+<div class="day">Monday</div>
+<div class="day">Tuesday</div>
+<div class="day">Wednesday</div>
+<div class="day">Thursday</div>
+<div class="day">Friday</div>
+
+So:
+
+document.querySelector('.day')
+
+selects:
+
+<div class="day">Monday</div>
+
+Therefore:
+
+dayOne
+
+is Monday.
+
+-----------------------------
+12. dayOne.parentElement
+------------------------
+
+
+You commented:
+
+// console.log(dayOne.parentElement);
+
+If you run:
+
+console.log(dayOne.parentElement);
+
+you're asking:
+
+Who is the parent of Monday?
+
+Look at the HTML:
+
+<div class="parent">
+    
+    <div class="day">Monday</div>
+
+</div>
+
+Monday is inside .parent.
+
+Therefore:
+
+dayOne.parentElement
+
+gives:
+
+<div class="parent">
+    ...
+</div>
+
+This is the opposite direction of .children.
+
+Remember this:
+parent.children
+      ↓
+Parent → Children
+
+
+dayOne.parentElement
+      ↑
+Child → Parent
+
+-----------------------
+13. nextElementSibling
+-----------------------------
+
+
+You commented:
+
+// console.log(dayOne.nextElementSibling);
+
+This is very important.
+
+A sibling means an element that has the same parent.
+
+Your HTML:
+
+             parent
+                |
+       ---------------------
+       |        |          |
+     Monday   Tuesday   Wednesday
+
+Monday and Tuesday have the same parent.
+
+Therefore they are siblings.
+
+dayOne.nextElementSibling
+
+means:
+
+Give me the next HTML element after Monday.
+
+So:
+
+Monday → Tuesday
+
+Therefore:
+
+dayOne.nextElementSibling
+
+gives:
+
+<div class="day">Tuesday</div>
+
+
+-------------------------------------------------
+14. What if you use nextElementSibling again?
+------------------------------------------------
+
+You could do:
+
+dayOne.nextElementSibling.nextElementSibling
+
+First:
+
+dayOne
+  ↓
+Monday
+
+First .nextElementSibling:
+
+Monday → Tuesday
+
+Second .nextElementSibling:
+
+Tuesday → Wednesday
+
+So the result is Wednesday.
+
+-----------------------------------
+15. Now the most confusing part: childNodes
+--------------------------------------------------------
+
+
+You wrote:
+
+console.log("NODES: ", parent.childNodes);
+
+-------------------------------------------------------------------------------------
+This is different from:
+                                                             
+parent.children
+children
+
+Gives you HTML elements only.
+
+childNodes
+
+Gives you all child nodes.
+
+That can include:
+
+HTML elements
+text nodes
+comments
+
+Your HTML has spaces and line breaks:
+
+<div class="parent"> 
+        <div class="day">Monday</div> 
+        <div class="day">Tuesday</div> 
+        ...
+</div>
+
+Those spaces and line breaks can become text nodes.
+
+So childNodes can look conceptually like:
+
+childNodes
+
+[0] "\n        "       ← text/whitespace
+[1] Monday             ← element
+[2] "\n        "       ← text/whitespace
+[3] Tuesday            ← element
+[4] "\n        "       ← text/whitespace
+[5] Wednesday          ← element
+...
+
+That's why childNodes can have more items than children.
+
+-----------------------------
+16. children vs childNodes
+-----------------------------
+
+This is VERY important for interviews.
+
+children
+parent.children
+
+Returns:
+
+Only HTML element children.
+
+Example:
+
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+childNodes
+parent.childNodes
+
+Returns:
+
+All child nodes, including elements, text nodes, and comments.
+
+------------------------------------
+17. Easy family-tree diagram
+--------------------------------------
+
+Keep this picture in your mind:
+
+                    parent
+                      │
+       ┌──────────────┼───────────────┐
+       │              │               │
+    Monday         Tuesday        Wednesday
+       │              │               │
+    child           child           child
+
+From the parent, you can go down:
+
+parent.children
+
+From a child, you can go up:
+
+dayOne.parentElement
+
+From one child, you can move sideways:
+
+dayOne.nextElementSibling
+18. Your commented lines together
+
+You have:
+
+// console.log(dayOne)
+// console.log(dayOne.parentElement);
+// console.log(dayOne.nextElementSibling);
+
+If you uncomment them:
+
+1.
+console.log(dayOne);
+
+Output:
+
+<div class="day">Monday</div>
+2.
+console.log(dayOne.parentElement);
+
+Output:
+
+<div class="parent">
+    ...
+</div>
+3.
+console.log(dayOne.nextElementSibling);
+
+Output:
+
+<div class="day">Tuesday</div>
+
+So you are basically moving around the DOM tree.
+
+                 parent
+                   ↑
+                   │
+                Monday ─────→ Tuesday
+                   │
+             parentElement   nextElementSibling
+19. One important correction in your code
+
+You have:
+
+const parent = document.querySelector(' .parent')
+
+There is an unnecessary space before .parent.
+
+You wrote:
+
+' .parent'
+
+Better:
+
+'.parent'
+
+So use:
+
+const parent = document.querySelector('.parent');
+
+Also fix:
+
+innerHTNL
+
+to:
+
+innerHTML
+20. Your complete corrected code
+<script>
+    const parent = document.querySelector('.parent');
+
+    console.log(parent);
+
+    console.log(parent.children);
+
+    console.log(parent.children[1].innerHTML);
+
+    for (let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].innerHTML);
+    }
+
+    parent.children[1].style.color = "orange";
+
+    console.log(parent.firstElementChild);
+
+    console.log(parent.lastElementChild);
+
+
+    const dayOne = document.querySelector('.day');
+
+    console.log(dayOne);
+
+    console.log(dayOne.parentElement);
+
+    console.log(dayOne.nextElementSibling);
+
+    console.log("NODES: ", parent.childNodes);
+</script>
+The 7 things you should remember today
+Code	Meaning
+parent.children	Get all element children
+parent.children[0]	Get first child
+parent.children[1]	Get second child
+parent.firstElementChild	Get first element child
+parent.lastElementChild	Get last element child
+dayOne.parentElement	Get child's parent
+dayOne.nextElementSibling	Get next sibling
+
+The main idea is just this:
+
+              PARENT
+                 │
+       ┌─────────┼─────────┐
+       ↓         ↓         ↓
+    CHILD 1   CHILD 2   CHILD 3
+       │         │
+       └────→ next sibling
+       
+       ↑
+       │
+ parentElement
+
+Once you understand this tree, parentElement, children, firstElementChild, lastElementChild, and nextElementSibling become much easier.
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->

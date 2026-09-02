@@ -100,4 +100,3 @@ setTimeout(function () {
 (() => {
     console.log("Hello");
 })();
-

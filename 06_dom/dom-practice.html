@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Practice</title>
+
+    <style>
+        .box {
+            border: 2px solid black;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .list-item {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="title" class="heading">
+        DOM Learning
+        <span>Chai aur Code</span>
+    </h1>
+
+    <h2>DOM Practice</h2>
+
+    <p id="description">
+        JavaScript DOM practice
+    </p>
+
+    <input type="text" placeholder="Enter your name">
+
+    <input type="password" placeholder="Enter password">
+
+    <div class="box">
+        <h3>Fruits</h3>
+
+        <ul id="myul">
+            <li class="list-item">Apple</li>
+            <li class="list-item">Banana</li>
+            <li class="list-item">Mango</li>
+        </ul>
+    </div>
+
+</body>
+</html>
+
+
+
+<!-- ===================================NOtes============================ -->
+
+<!-- -----------------------------
+ step 1- Run:
+------------------------------
+
+ document
+ Expected
+
+Chrome will show your HTML document. 
+
+-----------------------------
+Topic 2 — getElementById() -Select and Store the Element
+----------------------------------
+
+
+Run:
+document.getElementById("title")
+
+You should get:
+
+<h1 id="title" class="heading">...</h1>
+
+Now store it:
+
+const title = document.getElementById("title")
+
+What does this do?
+--------------------
+document.getElementById("title") finds the <h1>.
+    Then:
+
+const title = ...
+
+stores that <h1> inside the variable title.
+
+So:
+
+title
+  ↓
+<h1 id="title" class="heading">DOM Learning</h1>
+
+Now run:
+
+title
+
+You should see the <h1> element.
+    
+
+
+=--------------------------
+Topic 3 — .id - Now that title contains the <h1>, you can access its ID:
+----------------------------
+
+Run: title.id
+
+Expected
+"title"
+
+Now change the ID:
+
+title.id = "main-title"
+
+Check:title.id
+output:"main-title"
+
+
+//--------------------
+Topic 4 — .className
+---------------------
+
+Refresh the page first.
+
+Then:
+
+const title = document.getElementById("title")
+
+Run:
+
+title.className
+
+Expected:
+
+"heading"
+
+Now change it:
+
+title.className = "test"
+Check:
+
+title.className
+
+Expected:
+
+"test"
+
+--------------------
+Topic 5 — getAttribute()-means:
+
+Read/get the value of an HTML attribute.
+-------------------------
+
+
+
+Refresh the page again.
+
+const title = document.getElementById("title")
+
+Run:
+
+title.getAttribute("id")
+
+Expected:
+
+"title"
+
+Then:
+
+title.getAttribute("class")
+
+Expected:
+
+"heading"
+Try:
+
+title.getAttribute("style")
+
+Expected:
+
+null
+
+Because your <h1> doesn't initially have a style attribute.
+
+
+
+------------------------
+Topic 6 — setAttribute()-Change an Attribute
+
+setAttribute() is used to change or add an HTML attribute.
+-------------------------
+Syntax:
+element.setAttribute("attributeName", "newValue")
+
+Run:
+
+title.setAttribute("class", "test")
+
+Then:
+
+title.getAttribute("class")
+
+Expected:
+
+"test"
+
+You can also set another attribute:
+
+title.setAttribute("data-name", "heading")
+Check:
+
+title.getAttribute("data-name")
+
+Expected:
+
+"heading"
+Remember
+getAttribute()
+
+→ GET/read
+
+setAttribute()
+
+→ SET/change
+
+
+
+etAttribute() vs setAttribute()
+Method	         Purpose	      Example
+getAttribute()	 Get/read	      title.getAttribute("class")
+setAttribute()	 Change/set	       title.setAttribute("class", "test")
+
+----------------------------------------------------------------------------------------------------------------------------
+Easy memory trick:
+GET
+ ↓
+Read
+
+SET
+ ↓
+Change
+
+So:
+
+title.getAttribute("class")
+
+means:
+
+What is the current class?
+
+And:
+
+title.setAttribute("class", "test")
+
+means:
+
+Make the class "test".
+
+One important difference from .className
+
+You can also do:
+
+title.className
+
+to read the class.
+
+And:
+
+title.className = "test"
+
+to change it.
+
+But getAttribute() / setAttribute() work with many different HTML attributes, not just class.
+
+So for your notes, remember:
+
+getAttribute() → Read attribute
+setAttribute() → Change/Add attribute
+That is the cleanest version for Topic 6.
+--------------------------------------------------------------------------------------------------------------------
+
+Topic 7 — .style
+
+Refresh the page.
+
+const title = document.getElementById("title")
+
+Run:
+
+title.style.backgroundColor = "green"
+
+You should see the background become green.
+
+Now:
+
+title.style.color = "white"
+
+Then:
+
+title.style.padding = "20px"
+
+Then:
+
+title.style.borderRadius = "15px"
+
+You have now changed CSS using JavaScript.
+
+--------------------------
+Topic 8 — innerText
+--------------------------------
+
+Refresh.
+
+const title = document.getElementById("title")
+
+Run:
+
+title.innerText
+
+You should get something similar to:
+
+"DOM Learning Chai aur Code"
+
+Now change it:
+
+title.innerText = "Hello JavaScript"
+
+Look at the webpage.
+
+The <h1> should now say:
+
+Hello JavaScript
+
+-----------------------------
+Topic 9 — textContent
+-------------------------------
+
+Refresh.
+
+const title = document.getElementById("title")
+
+Run:
+
+title.textContent
+
+You'll see the text inside the <h1>, including whitespace/newlines from the HTML formatting.
+
+Try:
+
+title.textContent = "Hello React"
+
+The heading changes.
+
+
+-----------------------
+Topic 10 — innerHTML
+----------------------------
+
+
+Refresh.
+
+Run:
+
+const title = document.getElementById("title")
+
+Then:
+
+title.innerHTML
+
+You should see something like:
+
+DOM Learning
+<span>Chai aur Code</span>
+
+Now try:
+
+title.innerHTML = "<span>Hello React</span>"
+
+The <span> is interpreted as HTML.
+
+Check:
+
+title.innerHTML
+============================================================
+⭐ Important practice
+=================================================================
+Compare these:
+
+innerText
+title.innerText = "<span>Hello</span>"
+
+You'll see the actual:
+
+<span>Hello</span>
+innerHTML
+
+Refresh, then:
+
+title.innerHTML = "<span>Hello</span>"
+
+You'll see:
+
+Hello
+
+because <span> was interpreted as HTML.
+------------------------------------------------------------------------------
+
+
+---------------------------------
+Topic 11 — querySelector()
+-----------------------------------------
+Refresh the page.
+
+Try:
+
+document.querySelector("h1")
+
+You get the first <h1>.
+
+Try:
+
+document.querySelector("h2")
+
+You get the <h2>.
+
+ID
+document.querySelector("#title")
+Class
+document.querySelector(".heading")
+Input
+document.querySelector("input")
+
+It selects the first <input>.
+
+---------------------------------------
+Topic 12 — CSS attribute selector
+----------------------------------------
+
+You already practiced this, and now your HTML actually contains a password input.
+
+Run:
+
+document.querySelector('input[type="password"]')
+
+This time you should NOT get null.
+
+You should get:
+
+<input type="password" placeholder="Enter password">
+
+Also try:
+
+document.querySelector('input[type="text"]')
+
+-----------------------------
+Topic 13 — querySelectorAll()
+-----------------------------
+
+
+Run:
+
+const tempLiList = document.querySelectorAll("li")
+
+Then:
+
+tempLiList
+
+Expected:
+
+NodeList(3)
+
+You have 3 <li> elements.
+
+Check:
+
+tempLiList.length
+
+Expected:
+
+3
+
+----------------------------
+Topic 14 — NodeList + Index
+-----------------------------
+
+
+Run:
+
+tempLiList[0]
+
+You should get:
+
+<li class="list-item">Apple</li>
+
+Then:
+
+tempLiList[1]
+
+→ Banana
+
+tempLiList[2]
+
+→ Mango
+
+Now change the first one:
+
+tempLiList[0].style.color = "green"
+
+Only Apple should become green.
+
+Change the second:
+
+tempLiList[1].style.color = "red"
+
+Only Banana becomes red.
+
+----------------------------------------------
+Topic 15 — getElementsByClassName()
+----------------------------------------------
+
+Refresh the page.
+
+Run:
+
+const tempClassList = document.getElementsByClassName("list-item")
+
+Then:
+
+tempClassList
+
+Expected:
+
+HTMLCollection(3)
+
+Check:
+
+tempClassList.length
+
+Expected:
+
+3
+
+Access elements:
+
+tempClassList[0]
+tempClassList[1]
+tempClassList[2]
+
+------------------------
+Topic 16 — HTMLCollection
+---------------------------
+
+
+Now understand the difference.
+
+Run:
+
+const nodeList = document.querySelectorAll(".list-item")
+
+Then:
+
+nodeList
+
+You'll get:
+
+NodeList(3)
+
+Now:
+
+const htmlCollection = document.getElementsByClassName("list-item")
+
+Then:
+
+htmlCollection
+
+You'll get:
+
+HTMLCollection(3)
+Remember
+querySelectorAll()
+        ↓
+    NodeList
+
+getElementsByClassName()
+        ↓
+ HTMLCollection
+
+ ----------------------------
+Topic 17 — forEach()
+-----------------------------
+
+
+This is where you practice looping through the elements.
+
+First use querySelectorAll()
+const tempLiList = document.querySelectorAll(".list-item")
+
+Now:
+
+tempLiList.forEach(function(li) {
+    li.style.color = "green"
+})
+Expected
+
+All three:
+
+Apple
+Banana
+Mango
+
+become green.
+
+
+
+
+
+------------------------------------
+
+
+In DOM, NodeList and HTMLCollection are both collections that contain multiple HTML elements. The main difference is how you get them and what methods they support.
+
+1. NodeList
+
+A NodeList is a collection of nodes returned by methods like:
+
+document.querySelectorAll()
+Example
+
+HTML:
+
+<li>Apple</li>
+<li>Banana</li>
+<li>Mango</li>
+
+JavaScript:
+
+const list = document.querySelectorAll("li");
+
+Now:
+
+list
+
+You get something like:
+
+NodeList(3) [li, li, li]
+
+That means:
+
+list
+ ↓
+NodeList
+ ├── li → Apple   [0]
+ ├── li → Banana  [1]
+ └── li → Mango   [2]
+
+You can access them:
+
+list[0]
+list[1]
+list[2]
+
+And you can use:
+
+list.forEach(function(li) {
+    li.style.color = "green";
+});
+2. HTMLCollection
+
+An HTMLCollection is also a collection of HTML elements.
+
+It is commonly returned by:
+
+document.getElementsByClassName()
+
+and:
+
+document.getElementsByTagName()
+Example
+
+HTML:
+
+<li class="list-item">Apple</li>
+<li class="list-item">Banana</li>
+<li class="list-item">Mango</li>
+
+JavaScript:
+
+const list = document.getElementsByClassName("list-item");
+
+Now:
+
+list
+
+You get:
+
+HTMLCollection(3) [li.list-item, li.list-item, li.list-item]
+
+Think:
+
+list
+ ↓
+HTMLCollection
+ ├── li → Apple   [0]
+ ├── li → Banana  [1]
+ └── li → Mango   [2]
+
+You can access:
+
+list[0]
+list[1]
+list[2]
+3. Main difference ⭐
+	NodeList	HTMLCollection
+Common method	querySelectorAll()	getElementsByClassName()
+Contains	Nodes	HTML elements
+Indexing [0]	✅	✅
+.length	✅	✅
+forEach()	✅	⚠️ Don't rely on it; use a loop or convert to Array
+Example	NodeList(3)	HTMLCollection(3)
+4. Your examples
+
+You previously did:
+
+const tempLiList = document.querySelectorAll("li");
+
+You got:
+
+NodeList(3)
+
+So:
+
+querySelectorAll()
+        ↓
+    NodeList
+
+Then you did:
+
+const tempClassList =
+    document.getElementsByClassName("list-item");
+
+You got:
+
+HTMLCollection(3)
+
+So:
+
+getElementsByClassName()
+        ↓
+  HTMLCollection
+5. Why did forEach() work with NodeList?
+
+You can do:
+
+const list = document.querySelectorAll("li");
+
+list.forEach(function(li) {
+    li.style.color = "green";
+});
+
+Because the NodeList returned by querySelectorAll() supports forEach().
+
+With an HTMLCollection, the safer approach is:
+
+const list = document.getElementsByClassName("list-item");
+
+for (let i = 0; i < list.length; i++) {
+    list[i].style.color = "green";
+}
+
+Or convert it:
+
+Array.from(list).forEach(function(li) {
+    li.style.color = "green";
+});
+🧠 Easy way to remember
+NodeList
+document.querySelectorAll("li")
+
+↓
+
+NodeList
+HTMLCollection
+document.getElementsByClassName("list-item")
+
+↓
+
+HTMLCollection
+
+Both are collections of multiple elements, and both support:
+
+list[0]
+list[1]
+list.length
+
+The biggest thing for your current DOM learning is:
+
+querySelectorAll() → NodeList
+getElementsByClassName() → HTMLCollection
+
+That's enough to remember for now.
+
+
+------------------------------------------------- -->
